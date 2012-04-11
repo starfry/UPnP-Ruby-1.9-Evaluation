@@ -1,0 +1,12 @@
+# generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.un~
+
+#rails specific
+*.sqlite3
+log/*
+tmp/*

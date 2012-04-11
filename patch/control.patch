@@ -1,0 +1,61 @@
+diff -rupN control.orig/device.rb control/device.rb
+--- control.orig/device.rb	2012-04-07 16:30:41.196891278 +0100
++++ control/device.rb	2012-04-07 16:32:18.224669213 +0100
+@@ -189,32 +189,36 @@ class UPnP::Control::Device
+ 
+     manufacturer_url = description.elements['manufacturerURL']
+     @manufacturer_url = URI.parse manufacturer_url.text.strip if
+-      manufacturer_url
++      manufacturer_url && manufacturer_url.text
+ 
+     model_description = description.elements['modelDescription']
+-    @model_description = model_description.text.strip if model_description
++    @model_description = model_description.text.strip if
++      model_description && model_description.text
+ 
+     @model_name = description.elements['modelName'].text.strip
+ 
+     model_number = description.elements['modelNumber']
+-    @model_number = model_number.text.strip if model_number
++    @model_number = model_number.text.strip if
++      model_number && model_number.text
+ 
+     model_url = description.elements['modelURL']
+-    @model_url = URI.parse model_url.text.strip if model_url
++    @model_url = URI.parse model_url.text.strip if
++      model_url && model_url.text
+ 
+     @name = description.elements['UDN'].text.strip
+ 
+     presentation_url = description.elements['presentationURL']
+     @presentation_url = URI.parse presentation_url.text.strip if
+-      presentation_url
++      presentation_url && presentation_url.text
+ 
+     serial_number = description.elements['serialNumber']
+-    @serial_number = serial_number.text.strip if serial_number
++    @serial_number = serial_number.text.strip if
++      serial_number && serial_number.text
+ 
+     @type = description.elements['deviceType'].text.strip
+ 
+     upc = description.elements['UPC']
+-    @upc = upc.text.strip if upc
++    @upc = upc.text.strip if upc && upc.text
+ 
+     description.each_element 'deviceList/device' do |sub_device_description|
+       sub_device = UPnP::Control::Device.new sub_device_description, @url
+diff -rupN control.orig/service.rb control/service.rb
+--- control.orig/service.rb	2012-04-07 16:30:41.196891278 +0100
++++ control/service.rb	2012-04-07 16:32:25.088081151 +0100
+@@ -251,7 +251,9 @@ class UPnP::Control::Service
+     @type = description.elements['serviceType'].text.strip
+     @id = description.elements['serviceId'].text.strip
+     @control_url = @url + description.elements['controlURL'].text.strip
+-    @event_sub_url = @url + description.elements['eventSubURL'].text.strip
++    @event_sub_url = @url
++    @event_sub_url += @url + description.elements['eventSubURL'].text.strip if
++      description.elements['eventSubURL'].text
+     @scpd_url = @url + description.elements['SCPDURL'].text.strip
+ 
+     create_driver

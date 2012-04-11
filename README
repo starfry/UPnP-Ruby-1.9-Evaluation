@@ -1,0 +1,41 @@
+This file contains notes pertaining to an evaluation of
+ruby UPnP by Eric Hodel (seattlerb) on Ruby 1.9 by
+John Lane (starfry) April 2012. 
+https://github.com/starfry/UPnP-Ruby-1.9-Evaluation
+
+Home Page: http://docs.seattlerb.org/UPnP/index.html
+http://www.seattlerb.org/
+Github: https://github.com/seattlerb/upnp
+rubyGems: http://rubygems.org/gems/UPnP
+
+Discuss on My StackExchange:
+http://stackoverflow.com/questions/10078733/upnp-media-server-control-point-in-ruby
+
+Use
+---
+
+Dependencies
+------------
+
+Soap4r (needed by UPnp):
+Github: https://github.com/felipec/soap4r
+git://github.com/felipec/soap4r.git
+
+This soap4r clone includes fix for "XML processor module not found." as described
+at http://stackoverflow.com/questions/5754965/ruby-soap4r-wsdl2ruby-rb-errors
+and http://railsforum.com/viewtopic.php?pid=132126#p132126.
+
+Patch 
+-----
+
+The following patch file fixes problems with UPnP under Ruby 1.9
+It modifies two files: control/device.rb and control/service.rb
+
+$ patch -d $GEM_HOME/gems/UPnP-1.2.0/lib/UPnP -p0 < patch/control.patch
+
+The following patch file adds Bundler setup to the executable ruby scripts
+upnp_discover and upnp_listen. This is required so that soap4r is correctly
+initialised.
+
+$ patch -d $GEM_HOME/bin < patch/bin.patch
+

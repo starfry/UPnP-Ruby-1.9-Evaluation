@@ -1,0 +1,20 @@
+--- upnp_discover.orig	2012-04-07 16:41:45.317834177 +0100
++++ upnp_discover	2012-04-07 16:36:00.843885352 +0100
+@@ -6,6 +6,7 @@
+ # this file is here to facilitate running it.
+ #
+ 
++require 'bundler/setup'
+ require 'rubygems'
+ 
+ version = ">= 0"
+--- upnp_listen.orig	2012-04-07 16:41:05.054039206 +0100
++++ upnp_listen	2012-04-07 16:41:22.397571390 +0100
+@@ -6,6 +6,7 @@
+ # this file is here to facilitate running it.
+ #
+ 
++require 'bundler/setup'
+ require 'rubygems'
+ 
+ version = ">= 0"
