@@ -35,7 +35,10 @@ Enter the commands under "Use" below to install, patch and run upnp_discover.
 Use
 ---
 
-$ git://github.com/starfry/UPnP-Ruby-1.9-Evaluation.git
+NOTE: This assumes you are using RVM to manage your Rubies and Gems.
+(http://beginrescueend.com/)
+
+$ git clone git://github.com/starfry/UPnP-Ruby-1.9-Evaluation.git
 $ cd UPnP-Ruby-1.9-Evaluation
 $ patch -d $GEM_HOME/gems/UPnP-1.2.0/lib/UPnP -p0 < patch/control.patch
 $ patch -d $GEM_HOME/bin < patch/bin.patch
