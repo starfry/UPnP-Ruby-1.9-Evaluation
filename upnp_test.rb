@@ -31,9 +31,9 @@ locations.each do |location|
   puts "Model Description: " + device.model_description unless device.model_description.nil?
   puts "Model Name:        " + device.model_name unless device.model_name.nil?
   puts "Model Number:      " + device.model_number unless device.model_number.nil?
-  puts "Model URL:         " + device.model_url unless device.model_url.nil?
+  puts "Model URL:         " + device.model_url.request_uri unless device.model_url.nil?
   puts "Name:              " + device.name unless device.name.nil?
-  puts "Presentation URL:  " + device.presentation_url unless device.presentation_url.nil?
+  puts "Presentation URL:  " + device.presentation_url.request_uri unless device.presentation_url.nil?
   puts "Serial Number:     " + device.serial_number unless device.serial_number.nil?
   puts "Type:              " + device.type unless device.type.nil?
   puts "UPC:               " + device.upc unless device.upc.nil?
